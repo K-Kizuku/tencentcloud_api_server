@@ -9,17 +9,13 @@ import (
 )
 
 var (
-	RedisAddress  string
-	RedisPassword string
-	RedisDB       int
-	RedisPoolSize int
-	SdkAppID      uint64
-	SdkAppSecret  string
-	SecretID      string
-	SecretKey     string
-	AgentName     string
-	AgentSign     string
-	RTMP_URL      string
+	SdkAppID     uint64
+	SdkAppSecret string
+	SecretID     string
+	SecretKey    string
+	AgentName    string
+	AgentSign    string
+	RTMP_URL     string
 )
 
 func LoadEnv() {
@@ -29,16 +25,6 @@ func LoadEnv() {
 		log.Printf("読み込み出来ませんでした: %v", err)
 	}
 
-	RedisAddress = os.Getenv("REDIS_ADDRESS")
-	RedisPassword = os.Getenv("REDIS_PASSWORD")
-	RedisDB, err = strconv.Atoi(os.Getenv("REDIS_DB"))
-	if err != nil {
-		panic(err)
-	}
-	RedisPoolSize, err = strconv.Atoi(os.Getenv("REDIS_POOL_SIZE"))
-	if err != nil {
-		panic(err)
-	}
 	SdkAppID, err = strconv.ParseUint(os.Getenv("TENCENTCLOUD_APP_API_ID"), 10, 64)
 	if err != nil {
 		panic(err)
